@@ -1,0 +1,25 @@
+# -------------------------------------
+# DBT PROJECT CONFIGURATION
+# -------------------------------------
+name: 'edna'
+version: '1.4.7'
+config-version: 2
+
+profile: 'default'
+
+models:
+  +materialized: view
+  +bind: false
+
+  edna:
+    staging:
+      +schema: "{{ 'RVATS' if target.name in ['dev', 'ci'] else 'dbo_prod' }}"
+      +materialized: view
+
+    intermediate:
+      +schema: "{{ 'RVATS' if target.name in ['dev', 'ci'] else 'dbo_prod' }}"
+      +materialized: view
+
+    marts:
+      +schema: "{{ 'RVATS' if target.name in ['dev', 'ci'] else 'dbo_prod' }}"
+      +materialized: table
