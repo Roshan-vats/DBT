@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: sales
+    database: DBO_PROD   # exact Snowflake database where the source lives
+    schema: SALES        # exact schema name containing the table
+    loader: "your_loader_or_team"  # optional - who owns this source
+    tables:
+      - name: DIM_LOCATION_DETAILS
+        description: "Raw location details coming from SALES schema"
+        columns:
+          - name: LOCATION_ID
+            description: "Primary key for location"
