@@ -1,7 +1,6 @@
 {{ 
   config(
-    materialized='table',
-    schema= 'SALES' if target.name == 'prod' else 'RVATS'
+    materialized='table'
   ) 
 }}
 
