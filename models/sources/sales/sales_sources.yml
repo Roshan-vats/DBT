@@ -11,3 +11,73 @@ sources:
         columns:
           - name: LOCATION_ID
             description: "Primary key for location"
+      - name: DIM_CHANNEL_DETAILS
+        description: "Raw channel details "
+        columns:
+          - name: CHANNEL_ID
+            description: "Primary key for CHANNEL_ID"
+
+      - name: DIM_EMPLOYEE_DETAILS
+        description: "Raw employee details"
+        columns:
+          - name: EMPLOYEE_ID
+            description: "Primary key for EMPLOYEE_ID"
+      - name: DIM_DISTRIBUTOR_DETAILS
+        description: "Raw distrubutor details"
+        columns:
+          - name: DISTRIBUTOR_ID
+            description: "Primary key for DISTRIBUTOR_ID" 
+      - name: DIM_PRODUCT_DETAILS
+        description: "Raw product details"
+        columns:
+          - name: PRODUCT_ID
+            description: "Primary key for PRODUCT_ID" #DIM_SALES_TEAM_DETAILS
+      - name: DIM_SALES_TEAM_DETAILS
+        description: "Raw sales details"
+        columns:
+          - name: SALES_TEAM_ID
+            description: "Primary key for SALES_TEAM_ID"
+      - name: DIM_SHIPPING_DETAILS
+        description: "Raw shipping details"
+        columns:
+          - name: SHIPPING_ID
+            description: "Primary key for SHIPPING_ID" #DBO_PROD
+      - name: DIM_DATE
+        description: "Raw DATE details" #DBO_PROD
+        columns:
+          - name: date
+            data_type: timestamp_ntz
+          - name: YEAR
+            data_type: number
+          - name: QUARTER
+            data_type: number
+          - name: MONTH
+            data_type: number
+          - name: MONTH_NAME
+            data_type: varchar
+          - name: DAY
+            data_type: number
+          - name: DAY_OF_WEEK
+            data_type: number
+          - name: DAY_NAME
+            data_type: varchar
+          - name: WEEK_OF_YEAR
+            data_type: number
+          - name: DAY_OF_YEAR
+            data_type: number
+          - name: DAY_TYPE
+            data_type: varchar
+          - name: WEEK_START_DATE
+            data_type: timestamp_ntz
+          - name: MONTH_START_DATE
+            data_type: timestamp_ntz
+          - name: QUARTER_START_DATE
+            data_type: timestamp_ntz
+          - name: YEAR_START_DATE
+            data_type: timestamp_ntz
+
+      - name: FACT_SALES
+        description: "Raw fact_sales details"
+        columns:
+          - name: LOCATION_ID,CHANNEL_ID,EMPLOYEE_ID,DISTRIBUTOR_ID,PRODUCT_ID,SALES_TEAM_ID,SHIPPING_ID
+            description: " this is fat table all FK is here" 
