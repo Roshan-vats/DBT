@@ -30,15 +30,23 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  +bind: false # Materialize all views as late-binding
-  +materialized: view # Default all models to build as a view
+  +bind: false
+  +materialized: view   # default for all models = view
 
   edna:
+
+    # SOURCES ALWAYS VIEW (local + prod)
     sources:
-      +materialized: "{{ 'table' if target.name == 'prod' else 'view' }}"
+      +materialized: view 
+
+    # INTERMEDIATE ALWAYS VIEW (local + prod)
+    intermediate:
+      +materialized: view
+
+    # MARTS ALWAYS TABLE (local + prod)
     marts:
-      # We will use custom schema macro for development because we want to use each developers default schema for development
-      +schema: rvats
-      +materialized: table # Data marts should be built as a table
+      +materialized: table
+
+      # Sales model will land in SALES schema ONLY IN PROD
       sales:
         +schema: sales
