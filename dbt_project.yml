@@ -1,23 +1,27 @@
-name: prod_analytical_env
+name: Snowflake_analytics
 version: 1.0.0
-profile: prod_analytical_env
+profile: Snowflake_analytics
 config-version: 2
 
-# -----------------------------
-# FOLDER → SCHEMA & MATERIALIZATION
-# -----------------------------
 models:
-  prod_analytical_env:  # MUST match project name
-    source:
-      +schema: SALES
-      +materialized: view  # all source models as view
-    intermediate:
-      +schema: SALES
-      +materialized: view  # intermediate models as view
-    mart:
-      +schema: SALES
-      +materialized: table  # mart models as table
+  Snowflake_analytics:
 
-# -----------------------------
-# DEFAULT VARIABLES
-# -----------------------------
+    # ===============================
+    # ENV-BASED SCHEMA ROUTING
+    # ===============================
+    source:
+      +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env-DEV' else 'SALES' }}"
+      sales:
+        +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env' else 'SALES' }}"
+
+    mart:
+      +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env-DEV' else 'SALES' }}"
+      sales:
+        +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env' else 'SALES' }}"
+        
+    staging:
+      +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env-DEV' else 'SALES' }}"
+      sales:
+        +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env' else 'SALES' }}"
+
+
