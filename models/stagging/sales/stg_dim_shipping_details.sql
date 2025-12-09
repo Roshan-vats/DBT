@@ -1,7 +1,8 @@
 With dim_shipping_details AS ( 
-    select 
-        "SHIPPING_ID"
-        "SHIPPING_MODE"
+    select
+        "sales_team_id",
+        "sales_team_name",
+        "sales_team_manager"
     from {{ ref('src_dim_sales_details') }}
 )
 select * from dim_shipping_details
