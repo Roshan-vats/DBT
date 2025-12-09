@@ -1,6 +1,6 @@
-name: prod_analytical_env
+name: edna
 version: 1.0.0
-profile: prod_analytical_env
+profile: edna
 
 config-version: 2
 
@@ -8,31 +8,27 @@ config-version: 2
 #  FOLDER → SCHEMA LOGIC (Your Requirement)
 # ---------------------------------------
 models:
-
-  prod_analytical_env:      # ← this MUST match "name:" above
-
+  edna:
     source:
       sales:
-        +schema: sales
+        +database: DBO_PROD
+        +schema: SALES
       retail:
-        +schema: retail
+        +database: DBO_PROD
+        +schema: RETAIL
 
     intermediate:
       sales:
-        +schema: sales
+        +database: DBO_PROD
+        +schema: SALES
       retail:
-        +schema: retail
+        +database: DBO_PROD
+        +schema: RETAIL
 
     mart:
       sales:
-        +schema: sales
+        +database: DBO_PROD
+        +schema: SALES
       retail:
-        +schema: retail
-
-# ---------------------------------------
-#  DEFAULT SCHEMA SETTINGS
-# ---------------------------------------
-# When you run locally → schema = rvats
-# When job runs → schema overridden by folder above
-vars:
-  DBT_SCHEMA: "{{ env_var('DBT_SCHEMA', 'rvats') }}"
+        +database: DBO_PROD
+        +schema: RETAIL
