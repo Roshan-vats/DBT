@@ -2,7 +2,7 @@
 
 with dim_shipping_details as (
     select *
-    from {{ source('sales', 'DIM_SHIPPING_DETAILS') }}
+    from {{ source('sales', 'dim_shipping_details') }}
 )
 
 select * from dim_shipping_details

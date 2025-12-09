@@ -2,7 +2,7 @@
 
 with dim_locations_details as (
     select *
-    from {{ source('sales', 'DIM_LOCATION_DETAILS') }}
+    from {{ source('sales', 'dim_location_details') }}
 )
 
 select * from dim_locations_details

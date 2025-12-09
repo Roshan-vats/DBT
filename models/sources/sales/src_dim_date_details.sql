@@ -2,7 +2,7 @@
 
 with dim_date as (
     select *
-    from {{ source('sales', 'DIM_DATE') }}
+    from {{ source('sales', 'dim_date') }}
 )
 
 select * from dim_date
