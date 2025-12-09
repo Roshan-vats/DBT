@@ -1,8 +1,4 @@
-{{ 
-  config(
-    materialized='table'
-  ) 
-}}
+
 With fact_sales AS (
     select 
         *
