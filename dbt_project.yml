@@ -1,34 +1,23 @@
-name: edna
+name: prod_analytical_env
 version: 1.0.0
-profile: edna
-
+profile: prod_analytical_env
 config-version: 2
 
-# ---------------------------------------
-#  FOLDER → SCHEMA LOGIC (Your Requirement)
-# ---------------------------------------
+# -----------------------------
+# FOLDER → SCHEMA & MATERIALIZATION
+# -----------------------------
 models:
-  edna:
+  prod_analytical_env:  # MUST match project name
     source:
-      sales:
-        +database: DBO_PROD
-        +schema: SALES
-      retail:
-        +database: DBO_PROD
-        +schema: RETAIL
-
+      +schema: SALES
+      +materialized: view  # all source models as view
     intermediate:
-      sales:
-        +database: DBO_PROD
-        +schema: SALES
-      retail:
-        +database: DBO_PROD
-        +schema: RETAIL
-
+      +schema: SALES
+      +materialized: view  # intermediate models as view
     mart:
-      sales:
-        +database: DBO_PROD
-        +schema: SALES
-      retail:
-        +database: DBO_PROD
-        +schema: RETAIL
+      +schema: SALES
+      +materialized: table  # mart models as table
+
+# -----------------------------
+# DEFAULT VARIABLES
+# -----------------------------
