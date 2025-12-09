@@ -1,40 +1,38 @@
-name: 'edna'
-version: '1.4.7'
+name: prod_analytical_env
+version: 1.0.0
+profile: prod_analytical_env
+
 config-version: 2
 
-profile: 'default'
-
-model-paths: ["models"]
-analysis-paths: ["analyses"]
-test-paths: ["tests"]
-seed-paths: ["seeds"]
-macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
-
-target-path: "target"
-clean-targets:
-  - "target"
-  - "dbt_modules"
-
+# ---------------------------------------
+#  FOLDER → SCHEMA LOGIC (Your Requirement)
+# ---------------------------------------
 models:
-  # Default for entire project → VIEW
-  +bind: false
-  +materialized: view
 
-  edna:
+  prod_analytical_env:      # ← this MUST match "name:" above
 
-    # SOURCES → always VIEW (local + prod)
-    sources:
-      +materialized: view
-
-    # INTERMEDIATE → always VIEW (local + prod)
-    intermediate:
-      +materialized: view
-
-    # MARTS → always TABLE (local + prod)
-    marts:
-      +materialized: table
-
-      # SALES mart tables → always land in SALES schema (only applies when running in prod)
+    source:
       sales:
         +schema: sales
+      retail:
+        +schema: retail
+
+    intermediate:
+      sales:
+        +schema: sales
+      retail:
+        +schema: retail
+
+    mart:
+      sales:
+        +schema: sales
+      retail:
+        +schema: retail
+
+# ---------------------------------------
+#  DEFAULT SCHEMA SETTINGS
+# ---------------------------------------
+# When you run locally → schema = rvats
+# When job runs → schema overridden by folder above
+vars:
+  DBT_SCHEMA: "{{ env_var('DBT_SCHEMA', 'rvats') }}"
