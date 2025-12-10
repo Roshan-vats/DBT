@@ -1,3 +1,4 @@
+{{ config(materialized='view') }}
 With dim_product_details AS ( 
     select 
        "product_id",
