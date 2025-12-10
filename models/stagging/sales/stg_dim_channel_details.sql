@@ -1,3 +1,4 @@
+{{ config(materialized='view') }}
 With dim_channel_details AS ( 
     select 
         "channel_id",
