@@ -6,4 +6,4 @@ profile: Roshan Kumar Vats
 
 models:
   snowflake_analytics:
-    +schema: "{{ 'sales' if target.name == 'prod_analytical_env' else 'rvats' }}"
+    +schema: "{{ 'SALES' if target.name == 'prod_analytical_env' else 'rvats' }}"
