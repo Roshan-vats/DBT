@@ -1,27 +1,9 @@
-name: Snowflake_analytics
-version: 1.0.0
-profile: Snowflake_analytics
+name: snowflake_analytics
+version: "1.0"
 config-version: 2
 
+profile: Roshan Kumar Vats
+
 models:
-  Snowflake_analytics:
-
-    # ===============================
-    # ENV-BASED SCHEMA ROUTING
-    # ===============================
-    source:
-      +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env-DEV' else 'SALES' }}"
-      sales:
-        +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env' else 'SALES' }}"
-
-    mart:
-      +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env-DEV' else 'SALES' }}"
-      sales:
-        +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env' else 'SALES' }}"
-        
-    staging:
-      +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env-DEV' else 'SALES' }}"
-      sales:
-        +schema: "{{ 'RVATS' if target.name == 'prod_analytical_env' else 'SALES' }}"
-
-
+  snowflake_analytics:
+    +schema: "{{ 'sales' if target.name == 'prod_analytical_env' else 'rvats' }}"
